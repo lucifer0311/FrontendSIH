@@ -1,7 +1,31 @@
+import 'dart:async';
+
+import 'package:daemon/screens/auth_screens/authentication_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    startTime();
+  }
+
+  startTime() async {
+    var duration = const Duration(seconds: 3);
+    return Timer(duration, route);
+  }
+
+  route() {
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const AuthenticationScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +63,13 @@ class SplashScreen extends StatelessWidget {
                     fontFamily: 'Open Sans',
                     fontSize: 50),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.white,
+              )
             ])),
       ),
     );
