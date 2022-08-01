@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:daemon/screens/auth_screens/authentication_screen.dart';
+import 'package:daemon/screens/auth_screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   route() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const AuthenticationScreen()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const Signup()));
   }
 
   @override
