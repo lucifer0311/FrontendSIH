@@ -33,7 +33,8 @@ dependencies:
   path_provider: 
   hive: 
   hive_flutter: 
-
+  easy_search_bar:
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

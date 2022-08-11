@@ -1,3 +1,4 @@
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:daemon/theme/custom_colors.dart';
 
@@ -10,6 +11,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController controller = TextEditingController();
+  String searchValue = '';
+  final List<String> _suggestions = [
+    'Jawaharlal Nehru',
+    'Mahatma Gandhi',
+    'Sarojini Naidu',
+    'Dr. Abdul Kalam',
+    'Swami Vivekanand',
+    'Atal Bihari Vajpayee',
+    'Rajendra Prasad',
+    'Sardar Patel',
+    'Dr Babasaheb Ambedkar',
+    'Chatrapati Shivaji Maharaj'
+  ];
+
+  Future<List<String>> _fetchSuggestions(String searchValue) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+
+    return _suggestions.where((element) {
+      return element.toLowerCase().contains(searchValue.toLowerCase());
+    }).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +46,10 @@ class _HomePageState extends State<HomePage> {
     const headingStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
 
     return Scaffold(
-        appBar: AppBar(
-          foregroundColor: Colors.white,
-          backgroundColor: CustomColors.coral,
-        ),
+        appBar: EasySearchBar(
+            title: const Text(''),
+            onSearch: (value) => setState(() => searchValue = value),
+            asyncSuggestions: (value) async => await _fetchSuggestions(value)),
         drawer: Drawer(
           backgroundColor: Colors.amber.shade200,
         ),
@@ -36,76 +58,27 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 largeSpacing,
-                SearchBar(controller: controller),
-                largeSpacing,
-                const Text(
+                Text(
                   "Speeches Of the Month",
                   style: headingStyle,
                 ),
                 smallSpacing,
-                const SpeechGallery(
+                SpeechGallery(
                   speechList: ["Nehru", "Gandhi", "Naidu"],
                 ),
                 largeSpacing,
-                const Text(
+                Text(
                   "Best of ",
                   style: headingStyle,
                 ),
                 smallSpacing,
-                const LeadersGallery(
-                    leaderList: ["Vivekanand", "Kalam", "Patel"]),
+                LeadersGallery(leaderList: ["Vivekanand", "Kalam", "Patel"]),
               ],
             ),
           ),
         ));
-  }
-}
-
-class SearchBar extends StatefulWidget {
-  final TextEditingController controller;
-  const SearchBar({Key? key, required this.controller}) : super(key: key);
-
-  @override
-  State<SearchBar> createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 1.4,
-          child: TextFormField(
-            controller: widget.controller,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                filled: true,
-                hintStyle: TextStyle(color: Colors.grey.shade700),
-                hintText: "Search",
-                fillColor: Colors.white),
-          ),
-        ),
-        IconButton(
-            onPressed: () {
-              setState(() {
-                widget.controller.text = "";
-              });
-            },
-            icon: const Icon(Icons.clear, size: 32, color: Colors.grey)),
-        IconButton(
-            onPressed: () {
-              print("Search Value : ${widget.controller.text}");
-            },
-            icon: Icon(Icons.search, size: 32, color: CustomColors.babyPink)),
-      ]),
-    );
   }
 }
 

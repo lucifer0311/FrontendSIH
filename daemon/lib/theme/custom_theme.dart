@@ -4,6 +4,8 @@ import 'custom_colors.dart';
 
 class CustomTheme {
   static final lightTheme = ThemeData(
+      appBarTheme: AppBarTheme(
+          backgroundColor: CustomColors.coral, foregroundColor: Colors.white),
       colorScheme: ColorScheme(
           brightness: Brightness.light,
           primary: CustomColors.coral,
