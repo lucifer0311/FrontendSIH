@@ -74,38 +74,35 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 1.4,
-          child: TextFormField(
-            controller: widget.controller,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                filled: true,
-                hintStyle: TextStyle(color: Colors.grey.shade700),
-                hintText: "Search",
-                fillColor: Colors.white),
-          ),
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+      SizedBox(
+        width: MediaQuery.of(context).size.width / 1.8,
+        child: TextFormField(
+          controller: widget.controller,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              filled: true,
+              hintStyle: TextStyle(color: Colors.grey.shade700),
+              hintText: "Search",
+              fillColor: Colors.white),
         ),
-        IconButton(
-            onPressed: () {
-              setState(() {
-                widget.controller.text = "";
-              });
-            },
-            icon: const Icon(Icons.clear, size: 32, color: Colors.grey)),
-        IconButton(
-            onPressed: () {
-              print("Search Value : ${widget.controller.text}");
-            },
-            icon: Icon(Icons.search, size: 32, color: CustomColors.babyPink)),
-      ]),
-    );
+      ),
+      IconButton(
+          onPressed: () {
+            setState(() {
+              widget.controller.text = "";
+            });
+          },
+          icon: const Icon(Icons.clear, size: 32, color: Colors.grey)),
+      IconButton(
+          onPressed: () {
+            print("Search Value : ${widget.controller.text}");
+          },
+          icon: Icon(Icons.search, size: 32, color: CustomColors.babyPink)),
+    ]);
   }
 }
 
