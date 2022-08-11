@@ -30,9 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  path_provider: 
-  hive: 
-  hive_flutter: 
+  path_provider:
+  hive:
+  hive_flutter:
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +59,7 @@ flutter:
   assets:
     - assets/logo.png
     - assets/videos/
+    - assets/thumbnail.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

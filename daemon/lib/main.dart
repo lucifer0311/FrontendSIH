@@ -2,6 +2,7 @@ import 'package:daemon/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 // import 'screens/splash_screen.dart';
 import 'theme/custom_theme.dart';
+import 'package:daemon/screens/video_description/video_description.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,8 +17,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: CustomTheme.lightTheme,
       darkTheme: CustomTheme.darkTheme,
-      // home: const SplashScreen(),
-      home: const HomePage(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
