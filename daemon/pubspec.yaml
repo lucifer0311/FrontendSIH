@@ -34,6 +34,8 @@ dependencies:
   hive: 
   hive_flutter: 
   easy_search_bar:
+  video_player: 
+  audioplayers: 
 
 dev_dependencies:
   flutter_test:
