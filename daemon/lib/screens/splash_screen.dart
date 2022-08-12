@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: const [
               //Splash Screen Logo
               Image(
-                image: AssetImage('assets/logo.png'),
+                image: AssetImage('assets/images/logo.png'),
               ),
               SizedBox(
                 height: 10,

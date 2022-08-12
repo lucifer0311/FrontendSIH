@@ -1,3 +1,4 @@
+import 'package:daemon/screens/speech_description/speech_description.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:daemon/theme/custom_colors.dart';
@@ -10,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController controller = TextEditingController();
   String searchValue = '';
   final List<String> _suggestions = [
     'Jawaharlal Nehru',
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 smallSpacing,
                 SpeechGallery(
-                  speechList: ["Nehru", "Gandhi", "Naidu"],
+                  speechList: ["Naidu", "Gandhi", "Nehru"],
                 ),
                 largeSpacing,
                 Text(
@@ -98,14 +98,22 @@ class _SpeechGalleryState extends State<SpeechGallery> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: widget.speechList
-            .map((e) => Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Container(
-                    color: CustomColors.coral,
-                    height: 200,
-                    width: 300,
-                    child: Text(e),
+            .map((e) => InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SpeechDescription()));
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Container(
+                      color: CustomColors.coral,
+                      height: 200,
+                      width: 300,
+                      child: Text(e),
+                    ),
                   ),
                 ))
             .toList(),
