@@ -66,7 +66,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 smallSpacing,
                 SpeechGallery(
-                  speechList: ["Naidu", "Gandhi", "Nehru"],
+                  speechList: [
+                    "patel.jpg",
+                    "nehru.jpeg",
+                    "ambedkar.jpg",
+                    "gandhi.jpg",
+                  ],
                 ),
                 largeSpacing,
                 Text(
@@ -74,7 +79,12 @@ class _HomePageState extends State<HomePage> {
                   style: headingStyle,
                 ),
                 smallSpacing,
-                LeadersGallery(leaderList: ["Vivekanand", "Kalam", "Patel"]),
+                LeadersGallery(leaderList: [
+                  "thumbnail.webp",
+                  "bose.jpg",
+                  "vivekananda.png",
+                  "tilak.webp"
+                ]),
               ],
             ),
           ),
@@ -112,7 +122,7 @@ class _SpeechGalleryState extends State<SpeechGallery> {
                       color: CustomColors.coral,
                       height: 200,
                       width: 300,
-                      child: Text(e),
+                      child: Image.asset("assets/images/${e.toString()}"),
                     ),
                   ),
                 ))
@@ -138,16 +148,21 @@ class _LeadersGalleryState extends State<LeadersGallery> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: widget.leaderList
-            .map((e) => Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: CustomColors.babyPink),
-                    height: 200,
-                    width: 200,
-                    child: Center(child: Text(e)),
+            .map((e) => InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SpeechDescription()));
+                  },
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage: AssetImage(
+                          'assets/images/${e.toString()}',
+                        )),
                   ),
                 ))
             .toList(),
