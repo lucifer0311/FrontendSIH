@@ -43,8 +43,6 @@ class _HomePageState extends State<HomePage> {
       height: 20,
     );
 
-    const headingStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
-
     return Scaffold(
         appBar: EasySearchBar(
             title: const Text(''),
@@ -58,14 +56,14 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.only(left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 largeSpacing,
                 Text(
                   "Speeches Of the Month",
-                  style: headingStyle,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 smallSpacing,
-                SpeechGallery(
+                const SpeechGallery(
                   speechList: [
                     "patel.jpg",
                     "nehru.jpeg",
@@ -76,15 +74,30 @@ class _HomePageState extends State<HomePage> {
                 largeSpacing,
                 Text(
                   "Best of ",
-                  style: headingStyle,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 smallSpacing,
-                LeadersGallery(leaderList: [
+                const LeadersGallery(leaderList: [
                   "thumbnail.webp",
                   "bose.jpg",
                   "vivekananda.png",
                   "tilak.webp"
                 ]),
+                largeSpacing,
+                Text(
+                  "Handpicked For You",
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                smallSpacing,
+                const SpeechGallery(
+                  speechList: [
+                    "patel.jpg",
+                    "nehru.jpeg",
+                    "ambedkar.jpg",
+                    "gandhi.jpg",
+                  ],
+                ),
+                largeSpacing,
               ],
             ),
           ),
