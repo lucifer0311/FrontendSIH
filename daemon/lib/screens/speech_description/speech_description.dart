@@ -12,8 +12,6 @@ class _SpeechDescriptionState extends State<SpeechDescription> {
   String speaker = "Sarojini Naidu";
   String videoDetails =
       "February 13, 1879, Hyderabad - March 2, 1949, Lucknow, Also known by the sobriquet Bharatiya Kokila (The Nightingale of India), was a child prodigy, freedom fighter, and poet. Naidu was the first Indian woman to become the President of the Indian National Congress and the first woman to become the Governor of Uttar Pradesh.";
-  final titleStyle = const TextStyle(
-      fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +43,15 @@ class _SpeechDescriptionState extends State<SpeechDescription> {
                       children: [
                         Text(
                           speaker,
-                          style: titleStyle,
+                          style: Theme.of(context).textTheme.headline1,
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        Text(videoDetails),
+                        Text(
+                          videoDetails,
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
                       ],
                     ))
                   ],
@@ -63,7 +64,7 @@ class _SpeechDescriptionState extends State<SpeechDescription> {
                 ),
                 Text(
                   "Speeches",
-                  style: titleStyle,
+                  style: Theme.of(context).textTheme.headline1,
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(

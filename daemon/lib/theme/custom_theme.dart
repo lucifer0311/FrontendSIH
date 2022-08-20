@@ -17,7 +17,21 @@ class CustomTheme {
           background: CustomColors.background,
           onBackground: CustomColors.onBackground,
           surface: CustomColors.coral,
-          onSurface: CustomColors.onBackground));
+          onSurface: CustomColors.onBackground),
+      textTheme: const TextTheme(
+          headline1: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          headline2: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          bodyText1: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+          )));
 
   static final darkTheme = ThemeData(
       colorScheme: ColorScheme(
@@ -31,5 +45,19 @@ class CustomTheme {
           background: CustomColors.background,
           onBackground: CustomColors.onBackground,
           surface: CustomColors.coral,
-          onSurface: CustomColors.onBackground));
+          onSurface: CustomColors.onBackground),
+      textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey.shade100,
+          ),
+          headline2: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+          bodyText1: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+          )));
 }
