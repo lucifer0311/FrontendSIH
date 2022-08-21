@@ -30,7 +30,7 @@ class _SpeechPlayingPageState extends State<SpeechPlayingPage> {
         //     const VideoPlayingWidget()
         //   ],
         //)
-        body: const VideoPlayingWidget());
+        body: const RotatedBox(quarterTurns: 1, child: VideoPlayingWidget()));
   }
 }
 
