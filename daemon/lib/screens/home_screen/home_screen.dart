@@ -123,7 +123,7 @@ class _SpeechGalleryState extends State<SpeechGallery> {
         children: widget.speechList
             .map((e) => InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const SpeechDescription()));
@@ -163,7 +163,7 @@ class _LeadersGalleryState extends State<LeadersGallery> {
         children: widget.leaderList
             .map((e) => InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const SpeechDescription()));

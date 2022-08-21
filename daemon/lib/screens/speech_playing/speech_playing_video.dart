@@ -1,35 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-class SpeechPlayingPage extends StatefulWidget {
+class VideoSpeechPlayingPage extends StatefulWidget {
   final String speechTitle;
   final String speaker;
-  const SpeechPlayingPage(
+  const VideoSpeechPlayingPage(
       {Key? key, required this.speechTitle, required this.speaker})
       : super(key: key);
 
   @override
-  State<SpeechPlayingPage> createState() => _SpeechPlayingPageState();
+  State<VideoSpeechPlayingPage> createState() => _VideoSpeechPlayingPageState();
 }
 
-class _SpeechPlayingPageState extends State<SpeechPlayingPage> {
+class _VideoSpeechPlayingPageState extends State<VideoSpeechPlayingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        // body: Column(
-        //   children: [
-        //     Text(widget.speechTitle),
-        //     const SizedBox(
-        //       height: 24,
-        //     ),
-        //     Text(widget.speaker),
-        //     const SizedBox(
-        //       height: 24,
-        //     ),
-        //     const VideoPlayingWidget()
-        //   ],
-        //)
         body: const RotatedBox(quarterTurns: 1, child: VideoPlayingWidget()));
   }
 }
@@ -180,9 +167,6 @@ class _ControlsOverlay extends StatelessWidget {
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                // Using less vertical padding as the text is also longer
-                // horizontally, so it feels like it would need more spacing
-                // horizontally (matching the aspect ratio of the video).
                 vertical: 12,
                 horizontal: 16,
               ),

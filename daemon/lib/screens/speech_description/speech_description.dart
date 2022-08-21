@@ -1,5 +1,7 @@
-import 'package:daemon/screens/speech_playing/speech_playing.dart';
+import 'package:daemon/screens/speech_playing/speech_playing_video.dart';
 import 'package:flutter/material.dart';
+
+import '../speech_playing/speech_playing_audio.dart';
 
 class SpeechDescription extends StatefulWidget {
   const SpeechDescription({Key? key}) : super(key: key);
@@ -97,6 +99,15 @@ class _SpeechListState extends State<SpeechList> {
     "Address to the children of Durban",
   ];
 
+  void listenToSpeech(int index, BuildContext newContext) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (newContext) => AudioSpeechPlaying(
+                speechTitle: speechListContents[index],
+                speechSpeaker: widget.speaker)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -111,14 +122,36 @@ class _SpeechListState extends State<SpeechList> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SpeechPlayingPage(
+                            builder: (context) => VideoSpeechPlayingPage(
                                 speechTitle: speechListContents[index],
                                 speaker: widget.speaker)));
                   },
                   child: Container(
                     height: 50,
                     color: Colors.amber[(index * 100) + 100],
-                    child: Center(child: Text(speechListContents[index])),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Center(
+                                child: Text(
+                          speechListContents[index],
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ))),
+                        SizedBox(
+                          width: 50,
+                          child: Center(
+                            child: IconButton(
+                                icon: const Icon(
+                                  Icons.headphones,
+                                  size: 32,
+                                ),
+                                onPressed: () {
+                                  listenToSpeech(index, context);
+                                }),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },

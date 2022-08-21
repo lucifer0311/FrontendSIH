@@ -30,12 +30,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  path_provider: 
-  hive: 
-  hive_flutter: 
+  path_provider:
+  hive:
+  hive_flutter:
   easy_search_bar:
-  video_player: 
-  audioplayers: 
+  video_player:
+  audioplayers:
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +62,6 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
-    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

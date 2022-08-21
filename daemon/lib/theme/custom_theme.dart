@@ -18,20 +18,32 @@ class CustomTheme {
           onBackground: CustomColors.onBackground,
           surface: CustomColors.coral,
           onSurface: CustomColors.onBackground),
-      textTheme: const TextTheme(
-          headline1: TextStyle(
-            fontSize: 24,
+      textTheme: TextTheme(
+          headline1: const TextStyle(
+            fontSize: 26,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
           headline2: TextStyle(
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: FontWeight.w600,
+            color: CustomColors.onBackground,
           ),
-          bodyText1: TextStyle(
+          headline4: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: CustomColors.onBackground,
+          ),
+          bodyText1: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w300,
-          )));
+          ),
+          bodyText2: const TextStyle(
+              fontSize: 20,
+              height: 1.5,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              overflow: TextOverflow.clip)));
 
   static final darkTheme = ThemeData(
       colorScheme: ColorScheme(
@@ -46,18 +58,30 @@ class CustomTheme {
           onBackground: CustomColors.onBackground,
           surface: CustomColors.coral,
           onSurface: CustomColors.onBackground),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
           headline1: TextStyle(
-            fontSize: 24,
+            fontSize: 26,
             fontWeight: FontWeight.bold,
-            color: Colors.grey.shade100,
+            color: Colors.white,
           ),
-          headline2: const TextStyle(
-            fontSize: 18,
+          headline2: TextStyle(
+            fontSize: 24,
             fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
-          bodyText1: const TextStyle(
+          headline4: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+          bodyText1: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w300,
-          )));
+          ),
+          bodyText2: TextStyle(
+              fontSize: 20,
+              height: 1.5,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              overflow: TextOverflow.clip)));
 }
