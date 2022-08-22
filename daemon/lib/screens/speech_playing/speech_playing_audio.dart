@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,9 @@ class AudioSpeechAudio extends StatefulWidget {
 }
 
 class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
-  final player = AudioPlayer();
+  AudioPlayer player = AudioPlayer();
+
+  bool isAudioLoaded = false;
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
@@ -89,6 +92,7 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
     player.onDurationChanged.listen((newDuration) {
       setState(() {
         duration = newDuration;
+        isAudioLoaded = true;
       });
     });
 
@@ -106,55 +110,59 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Slider(
-            min: 0,
-            max: duration.inSeconds.toDouble(),
-            value: position.inSeconds.toDouble(),
-            onChanged: (value) async {
-              final position = Duration(seconds: value.toInt());
-              await player.seek(position);
-            }),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return isAudioLoaded
+        ? Column(
             children: [
-              Text(
-                formatTime(position),
-                style: Theme.of(context).textTheme.bodyText1,
+              Slider(
+                  min: 0,
+                  max: duration.inSeconds.toDouble(),
+                  value: position.inSeconds.toDouble(),
+                  onChanged: (value) async {
+                    final position = Duration(seconds: value.toInt());
+                    await player.seek(position);
+                  }),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      formatTime(position),
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    Text(
+                      formatTime(duration),
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )
+                  ],
+                ),
               ),
-              Text(
-                formatTime(duration),
-                style: Theme.of(context).textTheme.bodyText1,
+              CircleAvatar(
+                radius: 35,
+                child: IconButton(
+                    onPressed: () async {
+                      if (isPlaying) {
+                        setState(() {
+                          isPlaying = false;
+                        });
+                        await player.pause();
+                      } else {
+                        setState(() {
+                          isPlaying = true;
+                        });
+                        await player.resume();
+                      }
+                    },
+                    icon: Icon(
+                      isPlaying
+                          ? Icons.pause_circle
+                          : Icons.play_arrow_outlined,
+                      size: 32,
+                    )),
               )
             ],
-          ),
-        ),
-        CircleAvatar(
-          radius: 35,
-          child: IconButton(
-              onPressed: () async {
-                if (isPlaying) {
-                  setState(() {
-                    isPlaying = false;
-                  });
-                  await player.pause();
-                } else {
-                  setState(() {
-                    isPlaying = true;
-                  });
-                  await player.resume();
-                }
-              },
-              icon: Icon(
-                isPlaying ? Icons.pause_circle : Icons.play_arrow_outlined,
-                size: 32,
-              )),
-        )
-      ],
-    );
+          )
+        : const Center(child: CircularProgressIndicator());
   }
 }
 
