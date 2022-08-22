@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:daemon/theme/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class AudioSpeechPlaying extends StatefulWidget {
@@ -16,7 +15,7 @@ class AudioSpeechPlaying extends StatefulWidget {
 class _AudioSpeechPlayingState extends State<AudioSpeechPlaying> {
   String transcript = "";
   String speech =
-      "https://github.com/kaustubhpDev/FrontendSIH/blob/main/daemon/Tilak1.m4a";
+      "https://github.com/kaustubhpDev/FrontendSIH/blob/main/daemon/assets/audios/naidu.mpeg";
 
   @override
   void initState() {
@@ -71,13 +70,38 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
   Duration position = Duration.zero;
 
   @override
+  void dispose() {
+    player.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     setSpeechSource();
     super.initState();
+
+    player.onPlayerStateChanged.listen((event) {
+      setState(() {
+        isPlaying = event == PlayerState.playing;
+      });
+    });
+
+    player.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    player.onPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition;
+      });
+    });
   }
 
   Future<void> setSpeechSource() async {
-    await player.setSource(UrlSource(widget.speech));
+    await player.setSourceUrl(
+        'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Video/springtide/Sounds_strange_weird_but_unmistakably_romantic_Vol1/springtide_-_03_-_We_Are_Heading_to_the_East.mp3');
   }
 
   @override
@@ -88,7 +112,10 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
             min: 0,
             max: duration.inSeconds.toDouble(),
             value: position.inSeconds.toDouble(),
-            onChanged: (value) async {}),
+            onChanged: (value) async {
+              final position = Duration(seconds: value.toInt());
+              await player.seek(position);
+            }),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
@@ -118,7 +145,7 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
                   setState(() {
                     isPlaying = true;
                   });
-                  await player.play(UrlSource(widget.speech));
+                  await player.resume();
                 }
               },
               icon: Icon(
@@ -132,7 +159,16 @@ class _AudioSpeechAudioState extends State<AudioSpeechAudio> {
 }
 
 String formatTime(Duration time) {
-  return time.toString();
+  String twoDigits(int n) => n.toString().padLeft(2, '0');
+  final hours = twoDigits(time.inHours);
+  final minutes = twoDigits(time.inMinutes.remainder(60));
+  final seconds = twoDigits(time.inSeconds.remainder(60));
+
+  return [
+    if (time.inHours > 0) hours,
+    minutes,
+    seconds,
+  ].join(':');
 }
 
 class AudioSpeechScript extends StatelessWidget {
