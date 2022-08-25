@@ -78,10 +78,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 smallSpacing,
                 const LeadersGallery(leaderList: [
-                  "thumbnail.webp",
-                  "bose.jpg",
-                  "vivekananda.png",
-                  "tilak.webp"
+                  "sawami Vi..png",
+                  "dadabhai-naoroji.png",
+                  "Raja-Ram-Mohan-Roy.png",
+                  "Sarojini-Naidu-removebg-preview.png",
+                  "Bhagat Singh.png"
                 ]),
                 largeSpacing,
                 Text(
